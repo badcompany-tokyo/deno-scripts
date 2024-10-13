@@ -14,6 +14,13 @@ const flags = parseArgs(Deno.args, {
   alias: {
     help: 'h',
   },
+  unknown: (arg, key) => {
+    if (key) {
+      console.log(`yurusearch: illegal option ${arg}`);
+      help();
+      Deno.exit(1);
+    }
+  },
 });
 
 const exclude = [
